@@ -4,11 +4,27 @@
     <meta charset="utf-8" />
     <title>hopf-vibration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="index.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+    <link href="./css/normalize.css" rel="stylesheet" />
+    <link href="./css/index.css" rel="stylesheet" />
   </head>
   <body>
-    <canvas id="sketchpad" width="420" height="420"></canvas>
+    <div id="sketchpad-container">
+      <button id="toggle-sketchpad-display-btn">&minus;</button>
+
+      <div class="input-container brighten-on-hover mode-selector-container">
+        <label class="input-label" for="sketch-mode-selector">sketch mode</label>
+        <select class="select-input" id="sketch-mode-selector">
+          <option value="fiber" selected>fiber</option>
+          <option value="particle">particle</option>
+        </select>
+      </div>
+
+      <canvas id="sketchpad" width="420" height="420"></canvas>
+    </div>
     <canvas id="environment"></canvas>
+
+
     <script src="bundle.js"></script>
   </body>
 </html>

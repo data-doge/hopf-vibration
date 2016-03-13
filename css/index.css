@@ -1,0 +1,102 @@
+html, body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+#environment {
+  height: 100%;
+  width: 100%;
+}
+
+#sketchpad-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+#sketchpad {
+  background: rgba(0,0,0,0.05);
+  cursor: crosshair;
+}
+
+#toggle-sketchpad-display-btn {
+  position: absolute;
+  top: -24px;
+  right: 0;
+  z-index: 1000;
+  padding: 0px 8px;
+  background: rgba(0,0,0,0.05);
+  font-size: 21px;
+}
+
+/* selector */
+
+.input-container {
+  opacity: 0.85;
+}
+
+.input-label {
+  float: left;
+  border: 1px solid black;
+  padding: 4px 8px;
+  background: #77C4D3;
+  border-right: none;
+}
+
+.select-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid black;
+  background: transparent;
+  padding: 4px 8px;
+  border-radius: 0;
+  cursor: pointer;
+  text-align: center;
+}
+
+.brighten-on-hover {
+  opacity: 0.8 !important;
+  transition: 0.5s;
+}
+
+.brighten-on-hover:hover {
+  opacity: 1 !important;
+}
+
+/* mode-selector */
+
+.mode-selector-container {
+  position: absolute;
+  top: -24px;
+  left: 0;
+}
+
+/* css overrides */
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+input, select {
+  letter-spacing: inherit;
+  font-size: inherit;
+}
+
+select:focus {
+  outline: none;
+}

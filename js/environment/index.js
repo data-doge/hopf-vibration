@@ -1,18 +1,24 @@
 var THREE = require('three')
 var flyControls = require('three-fly-controls')(THREE)
 var generateFiber = require('./generate-fiber')
-var sketchpad = require('./../sketchpad')
+//var generateParticle = require('./../generate-particle')
+var hud = require('./../hud')
+// var flow = require('./flow')
+// var modebutton = require('./../buttons')
 
 module.exports = {
   scene: new THREE.Scene(),
   camera: new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000),
   renderer: new THREE.WebGLRenderer({alpha: true, canvas: document.getElementById('environment')}),
   fibers: [],
+  particles: [],
+  mode: "fiber",
+  hud: hud,
   init: function () {
     this.initRenderer()
     this.addAxes()
     this.initControls()
-    sketchpad.init()
+    this.hud.init(this)
   },
 
   startAnimation: function () {
@@ -22,10 +28,15 @@ module.exports = {
     requestAnimationFrame(function render (nowMsec) {
       requestAnimationFrame(render)
       self.renderer.render(self.scene, self.camera)
-      var coordsArray = sketchpad.extractNewSphericalCoords()
-      self.fibers = coordsArray.map(generateFiber)
-      self.fibers.forEach(function (fiber) { self.scene.add(fiber) })
-
+      var coordsArray = self.hud.sketchpad.extractNewSphericalCoords()
+      if (self.mode === "fiber"){
+        self.fibers = coordsArray.map(generateFiber)
+        self.fibers.forEach(function (fiber) { self.scene.add(fiber) })
+      }
+      // if (self.mode === "particle"){
+      //   self.newparticles = coordsArray.map(generateParticle)
+      //   self.newparticles.forEach(function (particle) {self.scene.add(particle)})
+      // }
       lastTimeMsec  = lastTimeMsec || nowMsec-1000/60
       var deltaMsec = Math.min(200, nowMsec - lastTimeMsec)
       lastTimeMsec  = nowMsec
@@ -54,6 +65,8 @@ module.exports = {
   initControls: function () {
     this.camera.position.z = 10
     this.controls = new THREE.FlyControls(this.camera, this.renderer.domElement, { movementSpeed: 0.01 })
-  }
+  },
+
+
 
 }
