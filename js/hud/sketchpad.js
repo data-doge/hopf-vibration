@@ -4,6 +4,7 @@ var hexStringFromSphericalCoords = require('./../services/hex-string-from-spheri
 
 var sketchpad = {
   $sketchpad: $('#sketchpad'),
+  $toggleDisplayBtn: $('#toggle-sketchpad-display-btn'),
   context: $('#sketchpad')[0].getContext('2d'),
   paint: false,
   sphericalCoordsArray: [],
@@ -33,6 +34,13 @@ var sketchpad = {
 
     this.$sketchpad.mouseup(function (e) { self.paint = false })
     this.$sketchpad.mouseleave(function(e){ self.paint = false })
+
+    this.$toggleDisplayBtn.click(function (e) {
+      e.preventDefault()
+      var $this = $(this)
+      self.$sketchpad.toggle()
+      self.$sketchpad.is(':visible') ? $this.html('&minus;') : $this.text('+')
+    })
   },
 
   onClick: function (e) {
