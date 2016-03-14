@@ -1,0 +1,105 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 2px;
+  font-size: 12px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#environment {
+  height: 100%;
+  width: 100%;
+}
+
+#sketchpad-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#sketchpad {
+  cursor: crosshair;
+}
+
+/* controls */
+
+#controls-container {
+  width: 100%;
+  display: flex;
+  position: relative;
+  border-bottom: 1px solid transparent;
+}
+
+#selectors-container {
+  display: flex;
+  position: relative;
+}
+
+#toggle-sketchpad-display-btn {
+  background: #EA2E49;
+  letter-spacing: 2px;
+  font-size: 12px;
+  border-right: none;
+  flex: 1;
+}
+
+.controls-vertical-separator {
+  width: 1px;
+}
+
+/* general selector styles */
+
+.input-container {
+  opacity: 0.85;
+}
+
+.input-label {
+  float: left;
+  padding: 5px 8px;
+  background: #77C4D3;
+  border-right: none;
+}
+
+.select-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: rgba(255,255,255,0.5);
+  padding: 4px 8px;
+  border-radius: 0;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* css overrides */
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+input, select {
+  letter-spacing: inherit;
+  font-size: inherit;
+}
+
+select:focus {
+  outline: none;
+}
+
+/* moz styling */
+
+@-moz-document url-prefix() {
+  .select-input {
+    padding: 4px 8px;
+    border-style: none;
+  }
+}
