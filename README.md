@@ -18,8 +18,10 @@ npm install
 
 ## develop
 
+[get an api key for nasa's api](https://api.nasa.gov/index.html#apply-for-an-api-key)
+
 ```
-npm start
+NASA_API_KEY=<YOUR_NASA_API_KEY> npm start
 ```
 
 browse to <http://localhost:9966/>.
