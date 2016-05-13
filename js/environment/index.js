@@ -16,6 +16,7 @@ module.exports = {
   sketchMode: "fiber",
   controlsMode: "orbit",
   hud: hud,
+  warpFactor: 0,
   init: function () {
     this.initRenderer()
     this.addAxes()
@@ -33,8 +34,9 @@ module.exports = {
       self.renderer.render(self.scene, self.camera)
       var coordsArray = self.hud.sketchpad.extractNewSphericalCoords()
       if (self.sketchMode === "fiber"){
-        self.fibers = coordsArray.map(generateFiber)
-        self.fibers.forEach(function (fiber) { self.scene.add(fiber) })
+        var newFibers = coordsArray.map(generateFiber)
+        newFibers.forEach(function (fiber) { self.scene.add(fiber) })
+        self.fibers = self.fibers.concat(newFibers)
       }
       if (self.sketchMode === "particle"){
         var newparticles = coordsArray.map(function (coords) {
@@ -52,6 +54,7 @@ module.exports = {
       lastTimeMsec  = nowMsec
       //particles traverse the circle every 2pi seconds
       self.updateParticlePositions(deltaMsec/2000)
+      // self.updateFiberPositions(deltaMsec/1000)
 
       if (self.controlsMode === 'fly' && self.controls) { self.controls.update(deltaMsec/1000) }
     })
@@ -63,6 +66,19 @@ module.exports = {
       particle.position.add(getFlow(pos,dt))
       particle.updateRotation()
     })
+  },
+
+  updateFiberPositions: function(dt) {
+    // var self = this
+    // self.fibers.forEach(function (fiber){
+    //   var newSphericalCoords = fiber.sphericalCoords
+    //   var eta = newSphericalCoords.eta
+    //   newSphericalCoords.eta = eta + (-Math.PI-eta)*Math.tanh(w)*2/Math.PI
+    //   fiber = generateFiber(newSphericalCoords)
+    //   console.log(fiber.geometry.position)
+    //   var pos = fiber.position
+    //   fiber.position.add(getFlow(pos,dt))
+    // })
   },
 
   removeImage: function () {
@@ -84,6 +100,10 @@ module.exports = {
         break
     }
   },
+  //
+  // warp: function() {
+  //
+  // },
 
   // private
 
